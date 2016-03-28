@@ -3,6 +3,7 @@ The purpose of this R package is to webscrape keyword-in-context (KWIC) results 
 
 ## install
 > install.packages("devtools")  # if not already on the user's computer  
+> library("devtools")  
 > install_github("ekbrown/byucorpora")  
 
 ## search functions
