@@ -4,13 +4,19 @@
 \alias{search_coca}
 \title{Search the Corpus of Contemporary American English (COCA)}
 \usage{
-search_coca(search_terms, section = "all", max_type = 10,
+search_coca(search_terms, section = "spok", max_type = 10,
   max_per_term = 100, max_total_result = 1000)
 }
 \arguments{
 \item{search_terms}{The search term or terms, as a vector of strings.}
 
-\item{section}{The section of the COCA to search in, from among \code{"all"} for all sections (the default), \code{"spok"} for the spoken section, \code{"fic"} for fiction, \code{"mag"} for magazine, \code{"news"} for newspaper, \code{"acad"} for academic.}
+\item{section}{The section of the COCA to search in, from among \code{"all"} for all sections (the default), \code{"spok"} for the spoken section, \code{"fict"} for fiction, \code{"mag"} for magazine, \code{"news"} for newspaper, \code{"acad"} for academic.}
+
+\item{max_type}{An integer specifying the maximum number of unique word types to return for each search string (results shown in the upper right portion of the COCA). For example, searching for nouns with the search string "[n*]" could potentially return tens of thousands of unique types, but the user may only be interested in the 100 most frequent ones.}
+
+\item{max_per_term}{An integer specifying the maximum number of keyword-in-context (KWIC) results to return for each search string.}
+
+\item{max_total_result}{An integer specifying the maximum number of total results to return. If only one search term is given in \code{search_terms}, this argument should be equal to or greater than the integer specified in \code{max_per_term}.}
 }
 \value{
 A data frame.
@@ -21,6 +27,7 @@ Search the COCA.
 \examples{
 search_coca("hello")
 search_coca("dude", section = "spok")
+search_coca(c("dude", "gnarly"), section = "spok", max_per_term = 500)
 
 }
 

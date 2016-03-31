@@ -1,10 +1,10 @@
 #' @export
-create_kwic_table <- function(kwic_page) {
+create_kwic_table_coca <- function(kwic_page) {
 
   # kwic_page_RCurl <- kwic.page
   # kwic_page_curl <- kwic_page
   # kwic_page <- rawToChar(kwic_page_curl$content)
-
+  # kwic_page <- rawToChar(kwic_page$content)
   # str_detect(kwic_page_RCurl, "panda")
   # str_detect(rawToChar(kwic_page_curl$content), "panda")
 
@@ -14,6 +14,9 @@ create_kwic_table <- function(kwic_page) {
 
   # kwic_page <- kwic_page_original
   # kwic_page <- rawToChar(kwic_page$content)
+
+  kwic_page <- iconv(kwic_page, "WINDOWS-1252", "UTF-8")
+
 
 	kwic_page <- stringr::str_replace(kwic_page, stringr::regex("(charset=)windows-1252", ignore_case = T), "\\1UTF-8")
 
@@ -34,6 +37,34 @@ create_kwic_table <- function(kwic_page) {
   return(res_table)
 
 } # end function
+
+#' @export
+create_kwic_table_cde <- function(kwic_page) {
+
+  # kwic_page <- rawToChar(kwic_page$content)
+
+  kwic_page <- iconv(kwic_page, "WINDOWS-1252", "UTF-8")
+
+  kwic_page <- stringr::str_replace(kwic_page, stringr::regex("(charset=)windows-1252", ignore_case = T), "\\1UTF-8")
+
+  kwic_page <- stringr::str_replace_all(kwic_page, stringr::regex('value=\\".*?\\">'), ">")
+
+  kwic_page <- stringr::str_replace_all(kwic_page, "<b><u>", "</td><td>")
+  kwic_page <- stringr::str_replace_all(kwic_page, "</u></b> ", "</td><td>")
+  kwic_page <- stringr::str_replace_all(kwic_page, "</u></b>", "</td><td>")
+  kwic_page <- stringr::str_replace_all(kwic_page, "</td><td></td><td>", " ")
+
+
+  kwic_xml <- xml2::read_html(kwic_page)
+  res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)
+  res_table <- dplyr::slice(res_table, 2:n())
+  res_table <- dplyr::select(res_table, -(X4:X6))
+  res_table <- dplyr::rename(res_table, case = X1, year = X2, source = X3, pre_context = X7, match = X8, post_context = X9)
+
+  return(res_table)
+
+} # end function
+
 
 #' @export
 urlEncodeCdE <- function(url) {
