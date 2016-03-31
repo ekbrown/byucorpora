@@ -37,11 +37,16 @@ search_coca <- function(search_terms, section = "spok", max_type = 10, max_per_t
 
 
   section <- stringr::str_to_lower(section)
-  if (!section %in% c("all", "spok", "fict", "mag", "news", "acad")) {
+  if (any(!section %in% c("all", "spok", "fict", "mag", "news", "acad"))) {
     stop(cat("You must specify 'section' as one of: 'all', 'spok', 'fict', 'mag', 'news', 'acad'"))
   }
-  codes_df <- data.frame(genre = c("all", "spok", "fict", "mag", "news", "acad"), code = c(0, 1, 2, 3, 4, 5))
-  cur_code <- codes_df[grep(section, codes_df$genre), 'code']
+  codes_df <- data.frame(genre = c("all", "spok", "fict", "mag", "news", "acad"), code = c(0, 1, 2, 3, 4, 5), stringsAsFactors = F)
+
+  row_loc <- sapply(section, function(x) grep(x, codes_df$genre))
+  cur_code <- codes_df[row_loc, 'code']
+  cur_code <- sort(cur_code, decreasing = T)
+  cur_code <- stringr::str_c("sec1=", cur_code, "&", collapse = "")
+
 
   # counter for running number of results
   all_counter <- 0
@@ -55,7 +60,7 @@ search_coca <- function(search_terms, section = "spok", max_type = 10, max_per_t
     cur_search_term <- search_terms[i]
     cat("\tWorking on search term ", i, " of ", length(search_terms), ": ", cur_search_term, "\n", sep = "")
 
-    url <- stringr::str_c("http://corpus.byu.edu/coca/x2.asp?chooser=seq&p=", urlEncodeCdE(cur_search_term), "&w2=&wl=4&wr=4&r1=&r2=&ipos1=-select-&B7=SEARCH&sec1=", cur_code, "&sec2=0&sortBy=freq&sortByDo2=freq&minfreq1=freq&freq1=10&freq2=10&numhits=", max_type, "&kh=100&groupBy=words&whatshow=raw&saveList=no&changed=&corpus=coca&word=&sbs=&sbs1=&sbsreg1=&sbsr=&sbsgroup=&redidID=&ownsearch=y&compared=&holder=&whatdo=seq&waited=y&rand1=y&whatdo1=1&didRandom=n&minFreq=freq&s1=0&s2=0&s3=0&perc=mi")
+    url <- stringr::str_c("http://corpus.byu.edu/coca/x2.asp?chooser=seq&p=", urlEncodeCdE(cur_search_term), "&w2=&wl=4&wr=4&r1=&r2=&ipos1=-select-&B7=SEARCH&", cur_code, "sec2=0&sortBy=freq&sortByDo2=freq&minfreq1=freq&freq1=10&freq2=10&numhits=", max_type, "&kh=100&groupBy=words&whatshow=raw&saveList=no&changed=&corpus=coca&word=&sbs=&sbs1=&sbsreg1=&sbsr=&sbsgroup=&redidID=&ownsearch=y&compared=&holder=&whatdo=seq&waited=y&rand1=y&whatdo1=1&didRandom=n&minFreq=freq&s1=0&s2=0&s3=0&perc=mi")
     freq_page <- curl::curl_fetch_memory(url, ch)
 
     no_results <- stringr::str_detect(rawToChar(freq_page$content), stringr::regex("(no matching records|no matches)", ignore_case = T))
