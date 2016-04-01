@@ -4,7 +4,8 @@ The purpose of this R package is to webscrape keyword-in-context (KWIC) results 
 ## Install
 > install.packages("devtools")  # if not already on the user's computer  
 > library("devtools")  
-> install_github("ekbrown/byucorpora")  
+> install_github("ekbrown/byucorpora") 
+> library("byucorpora")  
 
 ## Set email and password
 Before using the search functions to queries the corpora, the function `set_credentials` must be called to set the email and associated password for the current R session. If users aren't sure which email they used when registering for the BYU corpora, they can visit [corpus.byu.edu](http://corpus.byu.edu/login.asp) in order to figure it out. The function `get_credentials` returns the email currently set to be used for queries.
