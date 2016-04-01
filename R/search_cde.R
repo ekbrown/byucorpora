@@ -3,9 +3,13 @@
 #' @description Search the Corpus del Español.
 #'
 #' @param search_terms The search term or terms, as a vector of strings. Documentation about part-of-speech and wildcard tags is available on the CDE.
-#' @param section The section or sections of the CDE to search in, specified by a one-hundred-year period or periods, for example, \code{section = "1900s"} or \code{section = c("1900s", "1800s")}. Specific genres of the 1900s can be specified with \code{"oral"} for the oral section, \code{"fict"} for fiction, \code{"news"} for news, and \code{"acad"} for academic. Additionally, a combination of genres and/or one hundred year periods can be specified, for example, \code{section = c("1200s", "1500s", "1800s")} or \code{section = c("news", "acad")}.
+#'
+#' @param section The section or sections of the CDE to search in, specified by a one-hundred-year period or periods, for example, \code{section = "1900s"} or \code{section = c("1900s", "1800s")}. Specific genres of the 1900s can be specified with \code{"oral"} for the oral section, \code{"fict"} for fiction, \code{"news"} for news, and \code{"acad"} for academic. Additionally, a combination of genres and/or one hundred year periods can be specified, for example, \code{section = c("1200s", "1500s", "1800s")} or \code{section = c("news", "acad")}. To search in all centuries, use \code{section = "all"}.
+#'
 #' @param max_type An integer specifying the maximum number of unique word types to return for each search string (results shown in the upper right portion of the CDE). For example, searching for nouns with the search string "[n*]" could potentially return tens of thousands of unique types, but the user may only be interested in the 100 most frequent ones.
+#'
 #' @param max_per_term An integer specifying the maximum number of keyword-in-context (KWIC) results to return for each search string.
+#'
 #' @param max_total_result An integer specifying the maximum number of total results to return. If only one search term is given in \code{search_terms}, this argument should be equal to or greater than the integer specified in \code{max_per_term}.
 #'
 #' @return A data frame.
@@ -17,8 +21,6 @@
 #' @export
 search_cde <- function(search_terms, section = "oral", max_type = 10, max_per_term = 100, max_total_result = 1000) {
 
-  # search_terms <- c("[mujer]", "árbol", "[hombre]")
-  # search_terms <- "árbol"
   email <- getOption("byu_email")
   password <- getOption("byu_password")
 
@@ -39,8 +41,8 @@ search_cde <- function(search_terms, section = "oral", max_type = 10, max_per_te
 
   # gets the genres that the user wants to search in
   genre_df <- data.frame(
-    input = c("oral", "fict", "news", "acad", "1900s", "1800s", "1700s", "1600s", "1500s", "1400s", "1300s", "1200s"),
-    code = seq(23, 12),
+    input = c("all", "oral", "fict", "news", "acad", "1900s", "1800s", "1700s", "1600s", "1500s", "1400s", "1300s", "1200s"),
+    code = c(0, seq(23, 12)),
     stringsAsFactors = F
   )
 

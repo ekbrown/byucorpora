@@ -1,5 +1,5 @@
 #' @export
-create_kwic_table_coca <- function(kwic_page) {
+create_kwic_table <- function(kwic_page) {
 
   # kwic_page_RCurl <- kwic.page
   # kwic_page_curl <- kwic_page
@@ -32,7 +32,7 @@ create_kwic_table_coca <- function(kwic_page) {
 	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)
 	res_table <- dplyr::slice(res_table, 2:n())
   res_table <- dplyr::select(res_table, -(X5:X7))
-  res_table <- dplyr::rename(res_table, case = X1, year = X2, genre = X3, source = X4, pre_context = X8, match = X9, post_context = X10)
+  res_table <- dplyr::rename(res_table, case = X1, year = X2, section = X3, source = X4, pre_context = X8, match = X9, post_context = X10)
 
   return(res_table)
 

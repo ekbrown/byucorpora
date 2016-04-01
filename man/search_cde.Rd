@@ -10,7 +10,7 @@ search_cde(search_terms, section = "oral", max_type = 10,
 \arguments{
 \item{search_terms}{The search term or terms, as a vector of strings. Documentation about part-of-speech and wildcard tags is available on the CDE.}
 
-\item{section}{The section or sections of the CDE to search in, specified by a one-hundred-year period or periods, for example, \code{section = "1900s"} or \code{section = c("1900s", "1800s")}. Specific genres of the 1900s can be specified with \code{"oral"} for the oral section, \code{"fict"} for fiction, \code{"news"} for news, and \code{"acad"} for academic. Additionally, a combination of genres and/or one hundred year periods can be specified, for example, \code{section = c("1200s", "1500s", "1800s")} or \code{section = c("news", "acad")}.}
+\item{section}{The section or sections of the CDE to search in, specified by a one-hundred-year period or periods, for example, \code{section = "1900s"} or \code{section = c("1900s", "1800s")}. Specific genres of the 1900s can be specified with \code{"oral"} for the oral section, \code{"fict"} for fiction, \code{"news"} for news, and \code{"acad"} for academic. Additionally, a combination of genres and/or one hundred year periods can be specified, for example, \code{section = c("1200s", "1500s", "1800s")} or \code{section = c("news", "acad")}. To search in all centuries, use \code{section = "all"}.}
 
 \item{max_type}{An integer specifying the maximum number of unique word types to return for each search string (results shown in the upper right portion of the CDE). For example, searching for nouns with the search string "[n*]" could potentially return tens of thousands of unique types, but the user may only be interested in the 100 most frequent ones.}
 
