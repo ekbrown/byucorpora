@@ -2,6 +2,7 @@
 The purpose of this R package is to webscrape keyword-in-context (KWIC) results of some of the Brigham Young University (BYU) [corpora](http://corpus.byu.edu/), created by [Mark Davies](http://davies-linguistics.byu.edu/personal/). 
 
 ## Install
+Copy and paste the following into the R console:
 > install.packages("devtools")  
 > library("devtools")  
 > install_github("ekbrown/byucorpora")  
