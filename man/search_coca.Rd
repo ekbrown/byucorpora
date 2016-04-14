@@ -22,7 +22,7 @@ search_coca(search_terms, section = "spok", max_type = 10,
 A data frame.
 }
 \description{
-Search the COCA.
+Retrieve keyword-in-context results from the COCA.
 }
 \examples{
 search_coca("hello")

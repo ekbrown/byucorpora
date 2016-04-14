@@ -22,7 +22,7 @@ search_cde(search_terms, section = "oral", max_type = 10,
 A data frame.
 }
 \description{
-Search the Corpus del Español.
+Retrieve keyword-in-context results from the Corpus del Español.
 }
 \examples{
 search_coca("mujer")

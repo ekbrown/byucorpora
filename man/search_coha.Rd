@@ -22,7 +22,7 @@ search_coha(search_terms, section = "fict", max_type = 10,
 A data frame.
 }
 \description{
-Search the COHA.
+Retrieve keyword-in-context results from the COHA.
 }
 \examples{
 search_coha("erstwhile")
