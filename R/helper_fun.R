@@ -15,7 +15,7 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
 
 
 	kwic_xml <- xml2::read_html(kwic_page)
-	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)
+	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[3]], fill = T)
 	res_table <- dplyr::slice(res_table, 2:n())
 
 	if (corpus == "bnc") {
@@ -25,8 +25,8 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
     res_table <- dplyr::select(res_table, -(X4:X6))
     res_table <- dplyr::rename(res_table, case = X1, year = X2, source = X3, pre_context = X7, match = X8, post_context = X9)
   } else {
-    res_table <- dplyr::select(res_table, -(X5:X7))
-    res_table <- dplyr::rename(res_table, case = X1, year = X2, section = X3, source = X4, pre_context = X8, match = X9, post_context = X10)
+    # res_table <- dplyr::select(res_table, -(X5:X7))
+    res_table <- dplyr::rename(res_table, case = X1, year_section = X2, context = X3)
   }
 
   return(res_table)
