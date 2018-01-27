@@ -1,6 +1,6 @@
 # byucorpora
 
-NOTICE 2018-01-23: The interface to the corpora was updated in May 2015 and this R package now has some bugs. If it's helpful to you, great! If not, I'm sorry, but I don't plan to maintain it further, and it will likely be taken down in the future.
+NOTICE 2018-01-23: The interface to the corpora was updated in May 2016 and this R package now has some bugs. If it's helpful to you, great! If not, I'm sorry, but I don't plan to maintain it further, and it will likely be taken down in the future.
 
 The purpose of this R package is to webscrape keyword-in-context (KWIC) results of some of the Brigham Young University (BYU) [corpora](http://corpus.byu.edu/), created by [Mark Davies](http://davies-linguistics.byu.edu/personal/).
 
