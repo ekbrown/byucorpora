@@ -10,9 +10,6 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
 
 	kwic_page <- stringr::str_replace_all(kwic_page, "<b>", "</td><td>")		# update change in style tag to cell tag
 	kwic_page <- stringr::str_replace_all(kwic_page, "</b>", "</td><td>")		# update change in style tag to cell tag
-	#kwic_page <- stringr::str_replace_all(kwic_page, "<b><u>", "</td><td>")
-	#kwic_page <- stringr::str_replace_all(kwic_page, "</u></b> ", "</td><td>")
-	#kwic_page <- stringr::str_replace_all(kwic_page, "</u></b>", "</td><td>")
 	kwic_page <- stringr::str_replace_all(kwic_page, "</td><td></td><td>", " ")
 
 
