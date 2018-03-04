@@ -19,7 +19,7 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
 
 
 	kwic_xml <- xml2::read_html(kwic_page)
-	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)
+	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)  # change table to [3] for new interface
 	print(res_table)
 	View(res_table)
 	res_table <- dplyr::slice(res_table, 2:n())
@@ -95,7 +95,7 @@ create_byu_curl_handle <- function(corpus) {
 
   url <- switch(corpus,
     cde = "http://www.corpusdelespanol.org/",
-    coca = "http://corpus.byu.edu/coca/",
+    coca = "http://corpus.byu.edu/coca/old",  # url for old interface
     coha = "http://corpus.byu.edu/coha/old/",
     bnc = "http://corpus.byu.edu/bnc/old/"
   )
@@ -128,7 +128,7 @@ retrieve_search_terms <- function(search_terms, cur_code, max_type, max_per_term
 
     base_url <- switch(corpus,
       cde = "http://www.corpusdelespanol.org/",
-      coca = "http://corpus.byu.edu/coca/",
+      coca = "http://corpus.byu.edu/coca/old/",  # url for old interface
       coha = "http://corpus.byu.edu/coha/old/",
       bnc = "http://corpus.byu.edu/bnc/old/"
     )
