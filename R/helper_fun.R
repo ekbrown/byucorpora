@@ -22,7 +22,7 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
 	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)
 	print(res_table)
 	View(res_table)
-	res_table <- dplyr::slice(res_table, 3:n())
+	res_table <- dplyr::slice(res_table, 2:n())
 # print(corpus)
 	if (corpus == "bnc") {
 	  res_table <- dplyr::select(res_table, -(X4:X6))
