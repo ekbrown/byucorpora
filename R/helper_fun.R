@@ -95,7 +95,7 @@ create_byu_curl_handle <- function(corpus) {
 
   url <- switch(corpus,
     cde = "http://www.corpusdelespanol.org/",
-    coca = "http://corpus.byu.edu/coca/old",  # url for old interface
+    coca = "http://corpus.byu.edu/coca/old/",  # url for old interface
     coha = "http://corpus.byu.edu/coha/old/",
     bnc = "http://corpus.byu.edu/bnc/old/"
   )
