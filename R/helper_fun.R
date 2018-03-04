@@ -129,8 +129,8 @@ retrieve_search_terms <- function(search_terms, cur_code, max_type, max_per_term
     base_url <- switch(corpus,
       cde = "http://www.corpusdelespanol.org/",
       coca = "http://corpus.byu.edu/coca/",
-      coha = "http://corpus.byu.edu/coha/",
-      bnc = "http://corpus.byu.edu/bnc/"
+      coha = "http://corpus.byu.edu/coha/old/",
+      bnc = "http://corpus.byu.edu/bnc/old/"
     )
 
     url <- paste0(base_url, "x2.asp?chooser=seq&p=", urlEncodeCdE(cur_search_term), "&w2=&wl=4&wr=4&r1=&r2=&ipos1=-select-&B7=SEARCH&", cur_code, "sec2=0&sortBy=freq&sortByDo2=freq&minfreq1=freq&freq1=4&freq2=4&numhits=", max_type, "&kh=100&groupBy=words&whatshow=raw&saveList=no&changed=&corpus=", corpus, "&word=&sbs=&sbs1=&sbsreg1=&sbsr=&sbsgroup=&redidID=&ownsearch=y&compared=&holder=&whatdo=seq&waited=y&rand1=y&whatdo1=1&didRandom=n&minFreq=freq&s1=0&s2=0&s3=0&perc=mi")
