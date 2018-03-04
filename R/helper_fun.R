@@ -97,7 +97,7 @@ create_byu_curl_handle <- function(corpus) {
     cde = "http://www.corpusdelespanol.org/",
     coca = "http://corpus.byu.edu/coca/",
     coha = "http://corpus.byu.edu/coha/old/",
-    bnc = "http://corpus.byu.edu/bnc/"
+    bnc = "http://corpus.byu.edu/bnc/old/"
   )
 
   # gets initial cookie
