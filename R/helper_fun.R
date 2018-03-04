@@ -31,8 +31,8 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
     res_table <- dplyr::select(res_table, -(X4:X6))
     res_table <- dplyr::rename(res_table, case = X1, year = X2, source = X3, pre_context = X7, match = X8, post_context = X9)
   } else {
-    # res_table <- dplyr::select(res_table, -(X5:X7))
-    # res_table <- dplyr::rename(res_table, case = X1, year_section = X2, context = X3)
+     res_table <- dplyr::select(res_table, -(X5:X7))
+     res_table <- dplyr::rename(res_table, case = X1, year = X2, genre = X3, source = X4, pre_context = X7, match = X8, post_context = X9)
 
     # print(res_table)
     # View(res_table)
