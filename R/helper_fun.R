@@ -124,7 +124,7 @@ retrieve_search_terms <- function(search_terms, cur_code, max_type, max_per_term
     base_url <- switch(corpus,
       cde = "http://www.corpusdelespanol.org/",
       coca = "http://corpus.byu.edu/coca/",
-      coha = "http://corpus.byu.edu/coha/",
+      coha = "http://corpus.byu.edu/coha/old/",
       bnc = "http://corpus.byu.edu/bnc/"
     )
 
