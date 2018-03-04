@@ -8,13 +8,18 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
 
 	kwic_page <- stringr::str_replace_all(kwic_page, stringr::regex('value=\\".*?\\">'), ">")
 
-	kwic_page <- stringr::str_replace_all(kwic_page, "<b>", "</td><td>")		# update change in style tag to cell tag
-	kwic_page <- stringr::str_replace_all(kwic_page, "</b>", "</td><td>")		# update change in style tag to cell tag
+	#kwic_page <- stringr::str_replace_all(kwic_page, "<b>", "</td><td>")		# update change in style tag to cell tag
+	#kwic_page <- stringr::str_replace_all(kwic_page, "</b>", "</td><td>")		# update change in style tag to cell tag
+	kwic_page <- stringr::str_replace_all(kwic_page, "<b><u>", "</td><td>")
+	kwic_page <- stringr::str_replace_all(kwic_page, "</u></b> ", "</td><td>")
+	kwic_page <- stringr::str_replace_all(kwic_page, "</u></b>", "</td><td>")
+	kwic_page <- stringr::str_replace_all(kwic_page, "</td><td></td><td>", " ")
+
 	kwic_page <- stringr::str_replace_all(kwic_page, "</td><td></td><td>", " ")
 
 
 	kwic_xml <- xml2::read_html(kwic_page)
-	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[3]], fill = T)
+	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)
 	print(res_table)
 	View(res_table)
 	res_table <- dplyr::slice(res_table, 2:n())
@@ -91,7 +96,7 @@ create_byu_curl_handle <- function(corpus) {
   url <- switch(corpus,
     cde = "http://www.corpusdelespanol.org/",
     coca = "http://corpus.byu.edu/coca/",
-    coha = "http://corpus.byu.edu/coha/",
+    coha = "http://corpus.byu.edu/coha/old/",
     bnc = "http://corpus.byu.edu/bnc/"
   )
 
