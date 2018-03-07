@@ -1,6 +1,6 @@
 # byucorpora
 
-NOTE 2018-03-06: Many thanks to Joseph Flanagan for the pull request that fixed the bugs caused by the interface update in May 2016.
+NOTE 2018-03-06: Many thanks to Joseph Flanagan for the pull request that fixed the bugs caused by the interface update in May 2016. Also, if you know (some) Python, take a look at some of my [Python scripts](https://github.com/ekbrown/python_scripts), some of which use [Selenium](https://www.seleniumhq.org/), to do some of the things that this R package does.
 
 The purpose of this R package is to webscrape keyword-in-context (KWIC) results of some of the Brigham Young University (BYU) [corpora](http://corpus.byu.edu/), created by [Mark Davies](http://davies-linguistics.byu.edu/personal/).
 
