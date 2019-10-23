@@ -20,8 +20,8 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
 
 	kwic_xml <- xml2::read_html(kwic_page)
 	res_table <- rvest::html_table(rvest::html_nodes(kwic_xml, "table")[[2]], fill = T)  # change table to [3] for new interface
-	print(res_table)
-	View(res_table)
+	# print(res_table)
+	# View(res_table)
 	res_table <- dplyr::slice(res_table, 2:dplyr::n())
 # print(corpus)
 	if (corpus == "bnc") {
@@ -38,6 +38,8 @@ create_kwic_table <- function(kwic_page, corpus = "not_bnc_cde") {
     # View(res_table)
 
   }
+
+	res_table <- dplyr::mutate(res_table, source = stringr::str_replace_all(res_table$source, "[\\n\\r]+", " "))
 
   return(res_table)
 
